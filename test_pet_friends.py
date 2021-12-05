@@ -18,8 +18,8 @@ def test_get_all_pets_with_valid_key(filter = ''):
     status,result = pf.get_list_of_pets(auth_key,filter)
     assert status == 200
     assert len(result['pets'])>0
-#pet_photo = 'images/mech_voin_molnii_22101.jpg'
-def test_add_new_pet(pet_name = 'Барсик1',pet_type = 'Sibirean',pet_age = '3',pet_photo = 'images/1.txt'):
+
+def test_add_new_pet(pet_name = 'Барсик1',pet_type = 'Sibirean',pet_age = '3',pet_photo = 'images/mech_voin_molnii_22101.jpg'):
     _, auth_key = pf.get_api_key(valid_email, valid_password)
     status, result = pf.post_new_pet(0,auth_key, pet_name, pet_type, pet_age,pet_photo)
     assert status == 200
@@ -29,7 +29,7 @@ def test_delete_pet( filter = ''):
     _, auth_key = pf.get_api_key(valid_email, valid_password)
 
     st,res = pf.get_list_of_pets( auth_key, filter)
-    auth_key = {'key': 'bgfb5gnfnd'}
+
     l = len(res['pets'])
     if l > 0:
         pet_id = res['pets'][0]['id']
@@ -44,7 +44,6 @@ def test_update_pet_info( filter = '',pet_name = 'Мурзик1',pet_type = 'Ang
     l = len(res['pets'])
     if l > 0:
         pet_id = res['pets'][0]['id']
-        pet_id = 'segwr3lnoi'
         st1, res1 = pf.update_pet_info(auth_key, pet_id,pet_name,pet_type,pet_age)
         q= len(res1)
         assert st1 == 200
